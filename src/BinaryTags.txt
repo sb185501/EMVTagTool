@@ -1,0 +1,286 @@
+************************** Tag 82 **************************
+
+TagID 				:	82	 
+TagName 			:	AIP
+TagDescription		:	Application Interchange Profile
+TagSize				:   4
+#BitDetails			:	
+0x4000, 		(Byte 1 Bit 7) SDA supported
+0x2000, 		(Byte 1 Bit 6) DDA supported
+0x1000, 		(Byte 1 Bit 5) Cardholder verification is supported
+0x0800, 		(Byte 1 Bit 4) Terminal risk management is to be performed
+0x0400, 		(Byte 1 Bit 3) Issuer authentication is supported
+0x0100, 		(Byte 1 Bit 1) CDA supported
+0x0080, 		(Byte 2 Bit 8) EMV and Magstripe Modes Supported
+0x0040, 		(Byte 2 Bit 7) Expresspay Mobile supported
+
+************************** Tag 95 **************************
+
+TagID 				:	95	 
+TagName 			:	TVR
+TagDescription		:	Terminal Verification Results
+TagSize				:   10
+#BitDetails			:
+0x8000000000, 	(Byte 1 Bit 8) Offline data authentication was not performed
+0x4000000000, 	(Byte 1 Bit 7) SDA failed
+0x2000000000, 	(Byte 1 Bit 6) ICC data missing
+0x1000000000, 	(Byte 1 Bit 5) Card appears on terminal exception file
+0x0800000000, 	(Byte 1 Bit 4) DDA failed
+0x0200000000, 	(Byte 1 Bit 2) SDA selected
+0x0400000000, 	(Byte 1 Bit 3) CDA failed
+0x0080000000, 	(Byte 2 Bit 8) ICC and terminal have different application versions
+0x0040000000, 	(Byte 2 Bit 7) Expired application
+0x0020000000, 	(Byte 2 Bit 6) Application not yet effective
+0x0010000000, 	(Byte 2 Bit 5) Requested service not allowed for card product
+0x0008000000, 	(Byte 2 Bit 4) New card
+0x0000800000, 	(Byte 3 Bit 8) Cardholder verification was not successful
+0x0000400000, 	(Byte 3 Bit 7) Unrecognised CVM
+0x0000200000, 	(Byte 3 Bit 6) PIN try limit exceeded
+0x0000100000, 	(Byte 3 Bit 5) PIN entry required and PIN pad not present or not working
+0x0000080000, 	(Byte 3 Bit 4) PIN entry required, PIN pad present, but PIN was not entered
+0x0000040000, 	(Byte 3 Bit 3) Online PIN entered
+0x0000008000, 	(Byte 4 Bit 8) Transaction exceeds floor limit
+0x0000004000, 	(Byte 4 Bit 7) Lower consecutive offline limit exceeded
+0x0000002000, 	(Byte 4 Bit 6) Upper consecutive offline limit exceeded
+0x0000001000, 	(Byte 4 Bit 5) Transaction selected randomly for online processing
+0x0000000800, 	(Byte 4 Bit 4) Merchant forced transaction online
+0x0000000080, 	(Byte 5 Bit 8) Default TDOL used
+0x0000000040, 	(Byte 5 Bit 7) Issuer authentication failed
+0x0000000020, 	(Byte 5 Bit 6) Script processing failed before final GENERATE AC
+0x0000000010, 	(Byte 5 Bit 5) Script processing failed after final GENERATE AC
+
+************************** Tag 9B **************************
+
+TagID 				:	9B	 
+TagName 			:	TSI
+TagDescription		:	Transaction Status Indicator
+TagSize				:   4
+#BitDetails			:
+0x8000, 		(Byte 1 Bit 8) Offline data authentication was performed
+0x4000, 		(Byte 1 Bit 7) Cardholder verification was performed
+0x2000, 		(Byte 1 Bit 6) Card risk management was performed
+0x1000, 		(Byte 1 Bit 5) Issuer authentication was performed
+0x0800, 		(Byte 1 Bit 4) Terminal risk management was performed
+0x0400, 		(Byte 1 Bit 3) Script processing was performed
+0x0080, 		(Byte 2 Bit 8) RFU
+0x0001, 		(Byte 2 Bit 1) RFU
+
+************************** Tag 9F07 **************************
+
+TagID 				:	9F07	 
+TagName 			:	AUC
+TagDescription		:	Application Usage Control
+TagSize				:   4
+#BitDetails			:
+0x8000, 		(Byte 1 Bit 8) Valid for domestic cash transactions
+0x4000, 		(Byte 1 Bit 7) Valid for international cash transactions
+0x2000, 		(Byte 1 Bit 6) Valid for domestic goods
+0x1000, 		(Byte 1 Bit 5) Valid for international goods
+0x0800, 		(Byte 1 Bit 4) Valid for domestic services
+0x0400, 		(Byte 1 Bit 3) Valid for international services
+0x0200, 		(Byte 1 Bit 2) Valid at ATMs
+0x0100, 		(Byte 1 Bit 1) Valid at terminals other than ATMs
+0x0080, 		(Byte 2 Bit 8) Domestic cashback allowed
+0x0040, 		(Byte 2 Bit 7) International cashback allowed
+
+************************** Tag 9F0D **************************
+
+TagID 				:	9F0D	 
+TagName 			:	IAC
+TagDescription		:	IAC default
+TagSize				:   10
+#BitDetails			:
+0x8000000000, 	(Byte 1 Bit 8) Offline data authentication was not performed
+0x4000000000, 	(Byte 1 Bit 7) SDA failed
+0x2000000000, 	(Byte 1 Bit 6) ICC data missing
+0x1000000000, 	(Byte 1 Bit 5) Card appears on terminal exception file
+0x0800000000, 	(Byte 1 Bit 4) DDA failed
+0x0400000000, 	(Byte 1 Bit 3) CDA failed
+0x0200000000, 	(Byte 1 Bit 2) SDA selected
+0x0080000000, 	(Byte 2 Bit 8) ICC and terminal have different application versions
+0x0040000000, 	(Byte 2 Bit 7) Expired application
+0x0020000000, 	(Byte 2 Bit 6) Application not yet effective
+0x0010000000, 	(Byte 2 Bit 5) Requested service not allowed for card product
+0x0008000000, 	(Byte 2 Bit 4) New card
+0x0000800000, 	(Byte 3 Bit 8) Cardholder verification was not successful
+0x0000400000, 	(Byte 3 Bit 7) Unrecognised CVM
+0x0000200000, 	(Byte 3 Bit 6) PIN try limit exceeded
+0x0000100000, 	(Byte 3 Bit 5) PIN entry required and PIN pad not present or not working
+0x0000080000, 	(Byte 3 Bit 4) PIN entry required, PIN pad present, but PIN was not entered
+0x0000040000, 	(Byte 3 Bit 3) Online PIN entered
+0x0000008000, 	(Byte 4 Bit 8) Transaction exceeds floor limit
+0x0000004000, 	(Byte 4 Bit 7) Lower consecutive offline limit exceeded
+0x0000002000, 	(Byte 4 Bit 6) Upper consecutive offline limit exceeded
+0x0000001000, 	(Byte 4 Bit 5) Transaction selected randomly for online processing
+0x0000000800, 	(Byte 4 Bit 4) Merchant forced transaction online
+0x0000000080, 	(Byte 5 Bit 8) Default TDOL used
+0x0000000040, 	(Byte 5 Bit 7) Issuer authentication failed
+0x0000000020, 	(Byte 5 Bit 6) Script processing failed before final GENERATE AC
+0x0000000010, 	(Byte 5 Bit 5) Script processing failed after final GENERATE AC
+
+************************** Tag 9F0E **************************
+
+TagID 				:	9F0E	 
+TagName 			:	IAC
+TagDescription		:	IAC Denial
+TagSize				:   10
+#BitDetails			:
+0x8000000000, 	(Byte 1 Bit 8) Offline data authentication was not performed
+0x4000000000, 	(Byte 1 Bit 7) SDA failed
+0x2000000000, 	(Byte 1 Bit 6) ICC data missing
+0x1000000000, 	(Byte 1 Bit 5) Card appears on terminal exception file
+0x0800000000, 	(Byte 1 Bit 4) DDA failed
+0x0400000000, 	(Byte 1 Bit 3) CDA failed
+0x0200000000, 	(Byte 1 Bit 2) SDA selected
+0x0080000000, 	(Byte 2 Bit 8) ICC and terminal have different application versions
+0x0040000000, 	(Byte 2 Bit 7) Expired application
+0x0020000000, 	(Byte 2 Bit 6) Application not yet effective
+0x0010000000, 	(Byte 2 Bit 5) Requested service not allowed for card product
+0x0008000000, 	(Byte 2 Bit 4) New card
+0x0000800000, 	(Byte 3 Bit 8) Cardholder verification was not successful
+0x0000400000, 	(Byte 3 Bit 7) Unrecognised CVM
+0x0000200000, 	(Byte 3 Bit 6) PIN try limit exceeded
+0x0000100000, 	(Byte 3 Bit 5) PIN entry required and PIN pad not present or not working
+0x0000080000, 	(Byte 3 Bit 4) PIN entry required, PIN pad present, but PIN was not entered
+0x0000040000, 	(Byte 3 Bit 3) Online PIN entered
+0x0000008000, 	(Byte 4 Bit 8) Transaction exceeds floor limit
+0x0000004000, 	(Byte 4 Bit 7) Lower consecutive offline limit exceeded
+0x0000002000, 	(Byte 4 Bit 6) Upper consecutive offline limit exceeded
+0x0000001000, 	(Byte 4 Bit 5) Transaction selected randomly for online processing
+0x0000000800, 	(Byte 4 Bit 4) Merchant forced transaction online
+0x0000000080, 	(Byte 5 Bit 8) Default TDOL used
+0x0000000040, 	(Byte 5 Bit 7) Issuer authentication failed
+0x0000000020, 	(Byte 5 Bit 6) Script processing failed before final GENERATE AC
+0x0000000010, 	(Byte 5 Bit 5) Script processing failed after final GENERATE AC
+
+************************** Tag 9F0F **************************
+
+TagID 				:	9F0F	 
+TagName 			:	IAC
+TagDescription		:	IAC Online
+TagSize				:   10
+#BitDetails			:
+0x8000000000, 	(Byte 1 Bit 8) Offline data authentication was not performed
+0x4000000000, 	(Byte 1 Bit 7) SDA failed
+0x2000000000, 	(Byte 1 Bit 6) ICC data missing
+0x1000000000, 	(Byte 1 Bit 5) Card appears on terminal exception file
+0x0800000000, 	(Byte 1 Bit 4) DDA failed
+0x0400000000, 	(Byte 1 Bit 3) CDA failed
+0x0200000000, 	(Byte 1 Bit 2) SDA selected
+0x0080000000, 	(Byte 2 Bit 8) ICC and terminal have different application versions
+0x0040000000, 	(Byte 2 Bit 7) Expired application
+0x0020000000, 	(Byte 2 Bit 6) Application not yet effective
+0x0010000000, 	(Byte 2 Bit 5) Requested service not allowed for card product
+0x0008000000, 	(Byte 2 Bit 4) New card
+0x0000800000, 	(Byte 3 Bit 8) Cardholder verification was not successful
+0x0000400000, 	(Byte 3 Bit 7) Unrecognised CVM
+0x0000200000, 	(Byte 3 Bit 6) PIN try limit exceeded
+0x0000100000, 	(Byte 3 Bit 5) PIN entry required and PIN pad not present or not working
+0x0000080000, 	(Byte 3 Bit 4) PIN entry required, PIN pad present, but PIN was not entered
+0x0000040000, 	(Byte 3 Bit 3) Online PIN entered
+0x0000008000, 	(Byte 4 Bit 8) Transaction exceeds floor limit
+0x0000004000, 	(Byte 4 Bit 7) Lower consecutive offline limit exceeded
+0x0000002000, 	(Byte 4 Bit 6) Upper consecutive offline limit exceeded
+0x0000001000, 	(Byte 4 Bit 5) Transaction selected randomly for online processing
+0x0000000800, 	(Byte 4 Bit 4) Merchant forced transaction online
+0x0000000080, 	(Byte 5 Bit 8) Default TDOL used
+0x0000000040, 	(Byte 5 Bit 7) Issuer authentication failed
+0x0000000020, 	(Byte 5 Bit 6) Script processing failed before final GENERATE AC
+0x0000000010, 	(Byte 5 Bit 5) Script processing failed after final GENERATE AC
+
+************************** Tag 9F33 **************************
+
+TagID 				:	9F33	 
+TagName 			:	TC
+TagDescription		:	Terminal Capabilities
+TagSize				:   6
+#BitDetails			:
+0x800000, 		(Byte 1 Bit 8) Manual key entry
+0x400000, 		(Byte 1 Bit 7) Magnetic stripe
+0x200000, 		(Byte 1 Bit 6) IC with contacts
+0x008000, 		(Byte 2 Bit 8) Plaintext PIN for ICC verification
+0x004000, 		(Byte 2 Bit 7) Enciphered PIN for online verification
+0x002000, 		(Byte 2 Bit 6) Signature (paper)
+0x001000, 		(Byte 2 Bit 5) Enciphered PIN for offline verification
+0x000800, 		(Byte 2 Bit 4) No CVM Required
+0x000080, 		(Byte 3 Bit 8) SDA
+0x000040, 		(Byte 3 Bit 7) DDA
+0x000020, 		(Byte 3 Bit 6) Card capture
+0x000008, 		(Byte 3 Bit 4) CDA
+
+************************** Tag 9F34 **************************
+
+TagID 				:	9F34	 
+TagName 			:	CVM Results
+TagDescription		:	Cardholder Verification Results
+TagSize				:   6
+
+************************** Tag 9F40 **************************
+
+TagID 				:	9F40	 
+TagName 			:	ATC
+TagDescription		:	Additional Terminal Capabilities
+TagSize				:   10
+#BitDetails			:
+0x8000000000, 	(Byte 1 Bit 8) Transaction Type Capability - Cash
+0x4000000000, 	(Byte 1 Bit 7) Transaction Type Capability - Goods
+0x2000000000, 	(Byte 1 Bit 6) Transaction Type Capability - Services
+0x1000000000, 	(Byte 1 Bit 5) Transaction Type Capability - Cashback
+0x0800000000, 	(Byte 1 Bit 4) Transaction Type Capability - Inquiry
+0x0400000000, 	(Byte 1 Bit 3) Transaction Type Capability - Transfer
+0x0200000000, 	(Byte 1 Bit 2) Transaction Type Capability - Payment
+0x0100000000, 	(Byte 1 Bit 1) Transaction Type Capability - Administrative
+0x0080000000, 	(Byte 2 Bit 8) Transaction Type Capability - Cash Deposit
+0x0040000000, 	(Byte 2 Bit 7) RFU
+0x0020000000, 	(Byte 2 Bit 6) RFU
+0x0010000000, 	(Byte 2 Bit 5) RFU
+0x0008000000, 	(Byte 2 Bit 4) RFU
+0x0004000000, 	(Byte 2 Bit 3) RFU
+0x0002000000, 	(Byte 2 Bit 2) RFU
+0x0001000000, 	(Byte 2 Bit 1) RFU
+0x0000800000, 	(Byte 3 Bit 8) Terminal Data Input Capability - Numeric keys
+0x0000400000, 	(Byte 3 Bit 7) Terminal Data Input Capability - Alphabetic and special character keys
+0x0000200000, 	(Byte 3 Bit 6) Terminal Data Input Capability - Command keys
+0x0000100000, 	(Byte 3 Bit 5) Terminal Data Input Capability - Function keys
+0x0000080000, 	(Byte 3 Bit 4) RFU
+0x0000040000, 	(Byte 3 Bit 3) RFU
+0x0000020000, 	(Byte 3 Bit 2) RFU
+0x0000010000, 	(Byte 3 Bit 1) RFU
+0x0000008000, 	(Byte 4 Bit 8) Terminal Data Output Capability - Print, attendant
+0x0000004000, 	(Byte 4 Bit 7) Terminal Data Output Capability - Print, cardholder
+0x0000002000, 	(Byte 4 Bit 6) Terminal Data Output Capability - Display, attendant
+0x0000001000, 	(Byte 4 Bit 5) Terminal Data Output Capability - Display, cardholder
+0x0000000800, 	(Byte 4 Bit 4) RFU
+0x0000000400, 	(Byte 4 Bit 3) RFU
+0x0000000200, 	(Byte 4 Bit 2) Terminal Data Output Capability - Code table 10
+0x0000000100, 	(Byte 4 Bit 1) Terminal Data Output Capability - Code table 9
+0x0000000080, 	(Byte 5 Bit 8) Terminal Data Output Capability - Code table 8
+0x0000000040, 	(Byte 5 Bit 7) Terminal Data Output Capability - Code table 7
+0x0000000020, 	(Byte 5 Bit 6) Terminal Data Output Capability - Code table 6
+0x0000000010, 	(Byte 5 Bit 5) Terminal Data Output Capability - Code table 5
+0x0000000008, 	(Byte 5 Bit 4) Terminal Data Output Capability - Code table 4
+0x0000000004, 	(Byte 5 Bit 3) Terminal Data Output Capability - Code table 3
+0x0000000002, 	(Byte 5 Bit 2) Terminal Data Output Capability - Code table 2
+0x0000000001, 	(Byte 5 Bit 1) Terminal Data Output Capability - Code table 1
+
+************************** Tag 9F66 **************************
+
+TagID 				:	9F66	 
+TagName 			:	TTQ
+TagDescription		:	Terminal transaction qualifiers
+TagSize				:   8
+#BitDetails			:
+0x80000000, 	(Byte 1 Bit 8) MSD supported
+0x20000000, 	(Byte 1 Bit 6) qVSDC supported
+0x10000000, 	(Byte 1 Bit 5) EMV contact chip supported
+0x08000000, 	(Byte 1 Bit 4) Offline only reader
+0x04000000, 	(Byte 1 Bit 3) Online PIN supported
+0x02000000, 	(Byte 1 Bit 2) Signature supported
+0x01000000, 	(Byte 1 Bit 1) Offline data auth for online transactions supported
+0x00800000, 	(Byte 2 Bit 8) Online cryptogram required
+0x00400000, 	(Byte 2 Bit 7) CVM required
+0x00200000, 	(Byte 2 Bit 6) Contact chip offline pin supported
+0x00008000, 	(Byte 3 Bit 8) Issuer update processing supported
+0x00004000, 	(Byte 3 Bit 7) Mobile device functionality supported
+
+************************** Tag 9F66 **************************
