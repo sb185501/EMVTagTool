@@ -1,6 +1,6 @@
-# Program to show various ways to read and 
-# Read data in a file. 
+# Program to read Binary Tag data (which needs bit-by-bit explanation) from a text file. 
 
+# Structure (dict) to hold the constructed data of a Binary Tag.
 binaryTags = {}
 
 class BinaryTag():
@@ -25,6 +25,7 @@ hexaCode = ""
 hexaCodeDesc = ""
 megaHexaTagList = []
 
+# Read all the lines in the file and fillup the structure binaryTags to use it for decoding the tags.
 for line in lines:
     if ( ( line.isspace() == False ) and ( line.find('*') == -1 ) and ( line.find('#') == -1 ) and ( line.find('/') == -1 )) :
         lineList = line.split(':')
@@ -50,4 +51,4 @@ for line in lines:
         megaHexaTagList.clear()
 
 file1.seek(0) 
-file1.close()
+file1.close() # Close the file after process completes.
