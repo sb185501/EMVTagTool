@@ -1,9 +1,13 @@
+# Program to decode various EMV Tags when provided as input in the form of 
+# list of tuples containg tag and its corresponding value.
+
 import re
 import SimpleTagParser
 from SimpleTagParser import simpleTags
 import BinaryTagParser
 from BinaryTagParser import binaryTags
 
+# Decodes the Simple Tags from the SimpleTags.txt.
 def decodeSimpleTags( tag, value ):    
     if tag not in simpleTags:
         return [value, '', '%s tag is not valid or not supported' %tag]
@@ -16,7 +20,8 @@ def decodeSimpleTags( tag, value ):
         setValues.append( tagData.desc )
 
     return setValues
-    
+
+# Decodes the Binary Tags (which needs bit-by-bit explanation) from the BinaryTags.txt. 
 def decodeBinaryTags( tag, value ):
     
     tagData = binaryTags[tag]
@@ -33,6 +38,7 @@ def decodeBinaryTags( tag, value ):
         
     return [value, tagData.name, setBits]
 
+# Decodes the Tag 9F34 which needs byte-wise decoding information.
 def decodeTag9F34(tag, value):
 
     tagData = binaryTags[tag]
@@ -79,6 +85,7 @@ def decodeTag9F34(tag, value):
 
     return [value, tagData.name, setValues]
 
+# The base function which performs the action of decoding the EMV tags
 def decodeTags( inputList ):
     superSetBits = {}
     for tagValue in inputList:
@@ -99,9 +106,11 @@ def decodeTags( inputList ):
         superSetBits[tag] = tagInfoList
         continue
 
+    # Return a dict containing tag as key and the remaining details
+    # like description as values of that key to show them on UI
     return superSetBits
     
-    
+# Checks for a valid Binary Tag value
 def isValidValue(tag, value):
     tagData = binaryTags[tag]
     if tagData != None and len(value) != tagData.fieldLength:
