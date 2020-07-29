@@ -22,7 +22,7 @@ TagSize				:   4
 0x0100, 		(Byte 1 Bit 1) CDA supported
 0x0080, 		(Byte 2 Bit 8) EMV and Magstripe Modes Supported
 0x0040, 		(Byte 2 Bit 7) Expresspay Mobile supported
-0x0000,         (Byte 2 Bit 8) Magstripe Mode Only Supported
+0x0000, 		(Byte 2 Bit 8) Magstripe Mode Only Supported
 
 ************************** Tag 95 **************************
 
