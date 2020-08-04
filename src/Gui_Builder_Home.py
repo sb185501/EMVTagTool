@@ -83,12 +83,16 @@ class EpsilonUserPage(tk.Frame):
         current=0
         filename = ""
         def UploadAction(event=None):
+            area.configure(state = "normal")
             area.delete("1.0","end")
+            area.configure(state = "disabled")
             trannum.set("")
             tag.set("")
             filename = filedialog.askopenfilename()
+            textBoxFilePath.configure(state = "normal")
             textBoxFilePath.delete('1.0', tk.END)
             textBoxFilePath.insert(tk.INSERT, filename)
+            textBoxFilePath.configure(state = "disabled")
             # Preprocessing of the file data
             self.filename = filename
             import parseCacheLogForEMVTransactionNumbers as u
@@ -102,7 +106,10 @@ class EpsilonUserPage(tk.Frame):
         def transactionIdCombobox():
             trannum['values'] = self.transaction_id
         def transactionIdSelection(event=None):
+            tag.set("")
+            area.configure(state = "normal")
             area.delete("1.0","end")
+            area.configure(state = "normal")
             self.current = trannum.current()
             self.tags_values = []
             import getAssociatedEMVTags as a
@@ -116,34 +123,44 @@ class EpsilonUserPage(tk.Frame):
             tag['values'] = self.tags
         def tagSelection(event=None):
             # API result for selected tag
+            area.configure(state = "normal")
             area.delete("1.0","end")
+            area.configure(state = "disabled")
             self.current = tag.current()
             import EMVDecoder
             singletaginfo = [self.tags_values[self.current]]
             d = EMVDecoder.decodeTags(singletaginfo)
+            area.configure(state = "normal")
+            area.insert(tk.END,"Transaction Number - "+self.transaction_id[trannum.current()]+"\n")
             for keys,values in d.items():
                 if(len(values)==3):
                     if(type(values[2]) != type([])):
-                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name -" +  values[1] + "\n Description - " + values[2]+"\n\n")
+                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name - " +  values[1] + "\n Description - " + values[2]+"\n\n")
                     else:
                         
-                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name -" +  values[1]+"\n\n")
+                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name - " +  values[1]+"\n\n")
                         for i in values[2]:
                             area.insert(tk.END, i+'\n')
                 else:
-                    area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name -" +  values[1]+"\n\n")
+                    area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name - " +  values[1]+"\n\n")
             area.insert(tk.END,"\n")
+            area.configure(state = "disabled")
         def exportAction(event=None):
+            tag.set("")
             import filecreation
             import EMVDecoder
             result = EMVDecoder.decodeTags(self.tags_values)
-            filecreation.export_excel(result)
+            filecreation.export_excel(result,self.transaction_id[trannum.current()])
             import os
             cwd=os.getcwd()
+            area.configure(state = "normal")
             area.delete("1.0","end")
-            area.insert(tk.END, "Tag details have been exported to 'TagDetails.xlsx at path " + cwd)
+            area.insert(tk.END, "Tag details have been exported to 'TagDetails_" +self.transaction_id[trannum.current()] +".xlsx' at path " + cwd + "\TagDetailsFiles")
+            area.configure(state = "disabled")
         def clearEpsilonScreen(event=None):
+            area.configure(state = "normal")
             area.delete("1.0","end")
+            area.configure(state = "disabled")
             textBoxFilePath.delete("1.0","end")
             self.transaction_id=[]
             self.tags=[]
@@ -165,7 +182,7 @@ class EpsilonUserPage(tk.Frame):
         top_frame.rowconfigure(6, pad=7)
         label1=Label(top_frame, text='Click below to browse the CacheManager log', font=("Times", 13))
         label1.grid(sticky=tk.W,column=1)
-        textBoxFilePath = tk.Text(top_frame, height=1, width=40)
+        textBoxFilePath = tk.Text(top_frame,state="disabled",height=1, width=40)
         textBoxFilePath.grid(sticky=tk.W,row=1, column=1)
         # Preprocessing file
         upload_button = tk.Button(top_frame, text='Upload',relief=tk.RAISED, command = lambda: UploadAction(self))
@@ -174,14 +191,14 @@ class EpsilonUserPage(tk.Frame):
         label2=Label(top_frame, text='Transaction IDs', font=("Times", 12))
         label2.grid(sticky=tk.E,row=2,column=0)
         # Selecting tansaction id
-        trannum = ttk.Combobox(top_frame,values="",postcommand= lambda: transactionIdCombobox())
+        trannum = ttk.Combobox(top_frame,values="",state = "readonly",postcommand= lambda: transactionIdCombobox())
         trannum.bind("<<ComboboxSelected>>", transactionIdSelection)
         trannum.grid(sticky = tk.W,row=2, column=1)
         
         label2=Label(top_frame, text='Tags', font=("Times", 12))
         label2.grid(sticky=tk.E,row=3,column=0)
         # Selecting tags
-        tag = ttk.Combobox(top_frame,values="",postcommand= lambda: [tagCombobox()])
+        tag = ttk.Combobox(top_frame,values="",state = "readonly",postcommand= lambda: [tagCombobox()])
         tag.bind("<<ComboboxSelected>>", tagSelection)
         tag.grid(sticky=tk.W,row=3,column=1)
 
@@ -191,9 +208,19 @@ class EpsilonUserPage(tk.Frame):
         export_button = tk.Button(top_frame, text = "Export", relief=tk.RAISED,command = lambda: exportAction(self))
         export_button.grid(sticky=tk.E,row=3, column=1)
 
-        area = tk.Text(top_frame,width= 70,height = 15)
-        area.grid(row=4,column=1)
-
+        middle_frame = tk.Frame(self)
+        middle_frame.pack()
+ 
+        scrollbar = tk.Scrollbar(middle_frame)
+        scrollbar.pack(side="right", fill="y")
+ 
+        area = tk.Text(middle_frame,width= 100,height = 15,state = 'disabled')
+        area.pack(pady=5)
+        
+        # attach textbox to scrollbar
+        area.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=area.yview)
+        
         frame2 = tk.Frame(self)
         frame2.pack(fill=tk.BOTH, side = "bottom")
         load = Image.open("GUIImages/ncr-logo-2017.jpeg")
@@ -239,6 +266,7 @@ class ExternalUserPage(tk.Frame):
             self.value = textbox2.get()
             t1.set("")
             t2.set("")
+            area.configure(state = "normal")
             area.delete("1.0","end")
             self.tag_value=[(self.tag,self.value)]
             import EMVDecoder
@@ -246,17 +274,20 @@ class ExternalUserPage(tk.Frame):
             for keys,values in result.items():
                 if(len(values)==3):
                     if(type(values[2]) != type([])):
-                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name -" +  values[1] + "\n Description - " + values[2]+"\n\n")
+                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name - " +  values[1] + "\n Description - " + values[2]+"\n\n")
                     else:
                         
-                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name -" +  values[1]+"\n\n")
+                        area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name - " +  values[1]+"\n\n")
                         for i in values[2]:
                             area.insert(tk.END, i+'\n')
                 else:
-                    area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name -" +  values[1]+"\n\n")
+                    area.insert(tk.END,"Tag - "+keys+"\nValue - "+ values[0] + "\nTag Name - " +  values[1]+"\n\n")
             area.insert(tk.END,"\n")
+            area.configure(state = "disabled")
         def clearExternalUserScreen(event=None):
+            area.configure(state = "normal")
             area.delete("1.0","end")
+            area.configure(state = "disabled")
 
             #Here,call the decode function by passing tag and value
             
@@ -277,9 +308,16 @@ class ExternalUserPage(tk.Frame):
 
         middle_frame = tk.Frame(self)
         middle_frame.pack()
-
-        area = tk.Text(middle_frame,width= 70,height = 15)
-        area.grid(pady=5)
+ 
+        scrollbar = tk.Scrollbar(middle_frame)
+        scrollbar.pack(side="right", fill="y")
+ 
+        area = tk.Text(middle_frame,width= 100,height = 15,state="disabled")
+        area.pack(pady=5)
+        
+        # attach textbox to scrollbar
+        area.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=area.yview)
         
         bottom_frame = tk.Frame(self)
         bottom_frame.pack(fill=tk.BOTH, side = "bottom")
@@ -294,7 +332,7 @@ class ExternalUserPage(tk.Frame):
                            command=lambda: ( clearExternalUserScreen(self), controller.show_frame(HomePage)))
         button2.pack(side = tk.RIGHT, padx = 12 )
 app = EMVTagTool()
-app.geometry("900x750+300+300")
+app.geometry("900x750+250+50")
 app.resizable(width=False, height=False)
 app.mainloop()
 

@@ -1,7 +1,7 @@
 import xlsxwriter 
   
-def export_excel(a):
-    workbook = xlsxwriter.Workbook('TagDetails.xlsx') 
+def export_excel(a,trannum):
+    workbook = xlsxwriter.Workbook('TagDetailsFiles/TagDetails_'+ trannum +'.xlsx') 
     worksheet = workbook.add_worksheet("My sheet")    
     d = a
     bold = workbook.add_format({'bold': True})
@@ -22,11 +22,7 @@ def export_excel(a):
         if(len(value)==3):
             if type(value[2]) != type([]):
                 worksheet.write(row,col+3, value[2])
-            """else:
-                str1=""
-            for elem in value[2]:
-                str1=str1+''+elem
-            worksheet.write(row,col+3, str1)"""
+        
         row += 1
     workbook.close()
 
