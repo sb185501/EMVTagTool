@@ -1,6 +1,4 @@
 # EMVTagTool
-This repository is for storing the source code developed by team Epsilonites as part of NCR Global Hackathon 2020
-
 Instructions to run:
 1. Run the HackTag.exe file.
 2. If Epsilon User, select the CacheManager log file to be parsed.
